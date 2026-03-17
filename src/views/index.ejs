@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+</head>
+<body>
+    <%- include('partials/header', { pages }) %>
+    <h1>hello world!</h1>
+    <% if (locals.currentUser) {%>
+        <h1>WELCOME BACK <%= currentUser.name %></h1>
+        <a href="/log-out">LOG OUT</a>
+        <br>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <label for="profile-pic">Choose a profile picture:</label>
+            <input type="file" id="profile-pic" name="avatar" accept="image/png, image/jpeg">
+            
+            <button type="submit">Upload</button>
+        </form>
+
+    
+    <% } else { %>
+        <h1>please log in</h1>
+        <form action="/log-in" method="POST">
+            <label for="username">Username</label>
+            <input id="username" name="username" placeholder="username" type="text" />
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" />
+            <button type="submit">Log In</button>
+        </form>
+    <%}%>
+    
+</body>
+</html>
